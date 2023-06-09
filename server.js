@@ -1,14 +1,17 @@
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
-const adminRoutes = require('./routes/admin');
-const tenantRoutes = require('./controllers/tenants');
-const rentRoutes = require('./controllers/rents');
-const chatRoutes = require('./controllers/chat');
-
+const mongoose = require('mongoose')
 // Load environment variables
 dotenv.config();
+
+mongoose.connect(process.env.MONGODB_URI, {
+  userNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+    .then( () => console.log('Connected to MongoDB'))
+    .catch( (err) => console.error('Mongo connection error:', err));
 
 // Create Express application
 const app = express();
