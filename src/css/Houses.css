@@ -1,0 +1,100 @@
+/* Use Google Fonts or other preferred font imports */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Rest of the CSS code remains the same */
+.admin-houses {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f5fa;
+  border-radius: 4px;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #222fa1;
+}
+
+h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.select-wrapper {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+select {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #555;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #555;
+}
+
+button {
+  background-color: #222fa1;
+  color: #f0eded;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1a1e80;
+}
+
+.list-of-houses {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 16px;
+}
+
+li span {
+  font-weight: bold;
+}

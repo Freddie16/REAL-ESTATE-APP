@@ -1,0 +1,27 @@
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer__logo {
+    width: 50px;
+    margin-right: 10px;
+  }
+  
+  .footer__text {
+    font-size: 14px;
+    color: #fff; /* Updated to white color */
+    margin-top: 10px;
+  }
+  
+  .footer__text a {
+    color: #fff; /* Updated to white color */
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .footer__text a:hover {
+    color: #ccc; /* Update hover color if desired */
+  }

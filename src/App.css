@@ -1,0 +1,155 @@
+/* Admin Dashboard */
+.admin-dashboard {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-dashboard h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-dashboard p {
+  margin: 0 0 16px;
+}
+
+/* Admin Estates */
+.admin-estates {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-estates h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-estates p {
+  margin: 0 0 16px;
+}
+
+/* Admin Houses */
+.admin-houses {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-houses h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-houses p {
+  margin: 0 0 16px;
+}
+
+/* Admin Configuration */
+.admin-configuration {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-configuration h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-configuration p {
+  margin: 0 0 16px;
+}
+
+/* Admin Notifications */
+.admin-notifications {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-notifications h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-notifications p {
+  margin: 0 0 16px;
+}
+
+/* Admin Tenants */
+.admin-tenants {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-tenants h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-tenants p {
+  margin: 0 0 16px;
+}
+
+/* Admin Rent Payments */
+.admin-rent-payments {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin-rent-payments h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.admin-rent-payments p {
+  margin: 0 0 16px;
+}
+
+/* Homepage */
+.homepage {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.homepage h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.homepage p {
+  margin: 0 0 16px;
+}
+
+/* User Rent Payments */
+.user-rent-payments {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.user-rent-payments h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.user-rent-payments p {
+  margin: 0 0 16px;
+}
+
+/* User Pay Rent */
+.user-pay-rent {
+  background-color: #303daf;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.user-pay-rent h1 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}

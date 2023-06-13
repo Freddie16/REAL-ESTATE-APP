@@ -1,0 +1,201 @@
+/* Homepage.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.homepage {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.header {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  text-align: left;
+}
+
+.header h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.hero {
+  background-color: #f2f2f2;
+  padding: 40px 0;
+}
+
+.hero-content {
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 20px 0;
+}
+
+.hero-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.search-form {
+  margin-top: 20px;
+}
+
+.search-form input,
+.search-form select,
+.search-form button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.features {
+  background-color: #fff;
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.features-heading {
+  font-size: 48px;
+  font-weight: 600;
+  color: blue;
+  margin-bottom: 20px;
+}
+
+.features .feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.features .feature:hover {
+  transform: translateY(-5px);
+}
+
+.features .feature h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.my-real-estate-review {
+  background-color: #f2f2f2;
+  padding: 40px 0;
+}
+
+.review-heading h2 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #333;
+}
+
+.review-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.review {
+  width: 350px;
+  margin: 20px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.review:hover {
+  transform: translateY(-5px);
+}
+
+.review h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.review p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+}
+
+.review .thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.review .author {
+  font-size: 14px;
+  font-weight: 600;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.review .date {
+  font-size: 12px;
+  color: #999;
+}
+
+nav {
+  background-color: white;
+  color: black;
+  padding: 20px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+li:last-child {
+  margin-right: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: text-decoration 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.active {
+  font-weight: bold;
+}
+
+
+
+
+  
