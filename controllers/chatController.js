@@ -8,6 +8,7 @@ exports.getAllChats = (req, res) => {
 }
 
 exports.createChat = (req, res) => {
+  console.log(req.body)
   const { sender, message } = req.body;
 
   const newChat = new Chat({
@@ -17,7 +18,10 @@ exports.createChat = (req, res) => {
 
   newChat.save()
       .then(chat => res.status(201).json(chat))
-      .chat(err => res.status(500).json({ error: err.message}));
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({ error: err.message})
+      });
 
 
 };
@@ -60,7 +64,7 @@ exports.updateChatById = (req, res) => {
 exports.deleteChatById = (req, res) => {
     const chatId = req.params.id;
 
-    Chat.findByAndRemove(chatId)
+    Chat.findByIdAndDelete(chatId)
       .then(deletedChat => {
         if (!deletedChat) {
             return res.status(404).json({ error: 'Chat not found'})

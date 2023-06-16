@@ -8,6 +8,7 @@ exports.getAllEstates = (req, res) => {
 };
 
 exports.createEstate = (req, res) => {
+    console.log(req.body)
   const { name, location } = req.body;
 
   const newEstate = new Estate({
@@ -17,7 +18,10 @@ exports.createEstate = (req, res) => {
 
   newEstate.save()
     .then(estate => res.status(201).json(estate))
-    .catch(err => res.status(500).json({ error: err.message }));
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({ error: err.message })
+    });
 };
 
 exports.getEstateById = (req, res) => {

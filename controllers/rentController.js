@@ -1,4 +1,6 @@
 const Rent = require('../models/Rent');
+const { ObjectId } = require('mongodb');
+
 
 exports.getAllRents = (req, res) => {
   Rent.find()
@@ -8,17 +10,22 @@ exports.getAllRents = (req, res) => {
 
 //create new rent
 exports.createRent = (req, res) => {
+
+  console.log(req.body)
     const { propertyId, tenantId, amount} =req.body;
 
     const newRent = new Rent ({
-      property: propertyId,
-      tenant: tenantId,
+      property: new ObjectId(propertyId),
+      tenant: new ObjectId (tenantId),
       amount,
     });
 
     newRent.save()
-      .then(rent => res.status(201).json(rent))
-      .catch(err => res.status(500).json({error: err.message}));
+      .then(rent => {res.status(201).json(rent)})
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({error: err.message})
+      });
 };
 
 exports.getRentById = (req, res) => {

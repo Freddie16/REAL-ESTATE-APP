@@ -7,6 +7,6 @@ const tenantController = require('../controllers/tenantController');
 router.get('/lease', tenantController.lease);
 router.get('/pay-rent', tenantController.payRent);
 router.get('/rent-payments', tenantController.payRent);
-router.get('/vacant-houses', tenantController.vacantHouses);
+router.get('/vacant-houses', tenantController.vacanthouses);
 
 module.exports = router;
