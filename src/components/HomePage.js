@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Homepage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCog, faShieldAlt, faMoneyBill, faChartLine, faHeadset } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyBill, faChartLine, faHeadset, faCheck, faCog, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import UserChat from './UserChat'
 
 const HomePage = () => {
   const [searchType, setSearchType] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
-  const [isChatOpen, setIsChatOpen] = useState(false); // Added state variable
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [location, setLocation] = useState('');
+  const [budget, setBudget] = useState('');
 
   const images = [
     'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?cs=srgb&dl=pexels-binyamin-mellish-106399.jpg&fm=jpg',
     'https://images.pexels.com/photos/4469133/pexels-photo-4469133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     'https://images.pexels.com/photos/5524164/pexels-photo-5524164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-   ];
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,7 +25,7 @@ const HomePage = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [images]);
 
   const handleButtonClick = (type) => {
     setSearchType(type);
@@ -32,6 +33,23 @@ const HomePage = () => {
 
   const handleExitClick = () => {
     setSearchType(null);
+    setLocation('');
+    setBudget('');
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Perform the search logic using the location and budget values
+    if (searchType === 'buy') {
+      console.log('Searching for buying property:', location, budget);
+      // Perform search for buying property
+    } else if (searchType === 'sell') {
+      console.log('Searching for selling property:', location, budget);
+      // Perform search for selling property
+    } else if (searchType === 'rent') {
+      console.log('Searching for renting property:', location, budget);
+      // Perform search for renting property
+    }
   };
 
   return (
@@ -41,37 +59,53 @@ const HomePage = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/signup" activeClassName="active">SignUp</NavLink>
+              <div className="nav-link-container">
+                <NavLink to="/signup" activeClassName="active">
+                  SignUp
+                </NavLink>
+              </div>
             </li>
             <li>
-              <NavLink to="/login" activeClassName="active">Login</NavLink>
+              <div className="nav-link-container">
+                <NavLink to="/login" activeClassName="active">
+                  Login
+                </NavLink>
+              </div>
             </li>
             <li>
-              <NavLink to="/admin/dashboard" activeClassName="active">Dashboard</NavLink>
+              <div className="nav-link-container">
+                <NavLink to="/admin/dashboard" activeClassName="active">
+                  Dashboard
+                  <span className="arrow-icon">&#9660;</span>
+                </NavLink>
+              </div>
             </li>
             <li>
-              <NavLink to="/faq" activeClassName="active">FAQs</NavLink>
+              <div className="nav-link-container">
+                <NavLink to="/faq" activeClassName="active">
+                  FAQs
+                  <span className="arrow-icon">&#9660;</span>
+                </NavLink>
+              </div>
             </li>
             <li>
               <button onClick={() => setIsChatOpen(!isChatOpen)}>
                 <span className="chat-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M12 2C6.48 2 2 6.48 2 12c0 2.81 1.08 5.37 2.83 7.29l-1.42 1.42c-.78-.64-1.47-1.39-2.05-2.24C.96 16.32 0 14.21 0 12c0-6.63 5.37-12 12-12s12 5.37 12 12-5.37 12-12 12c-2.21 0-4.26-.59-6-1.62-.85-.58-1.6-1.27-2.24-2.05l1.42-1.42C6.63 18.92 9.19 20 12 20c5.52 0 10-4.48 10-10S17.52 0 12 0zm-2 16h-1v-2h1v2zm3 0h-1v-2h1v2zm3 0h-1v-2h1v2z"/>
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 2C6.48 2 2 6.48 2 12c0 2.81 1.08 5.37 2.83 7.29l-.01.01L6.7 19l1.41-1.41C9.63 17.32 10.74 18 12 18c5.52 0 10-4.48 10-10S17.52 2 12 2zm2 13h-1v-2h1v2zm3 0h-1v-2h1v2zm2-5H5V8h14v2zm0-4H5V4h14v2z" />
                   </svg>
                 </span>
                 <span>Chat</span>
               </button>
             </li>
           </ul>
-          {isChatOpen && (
-        <div className="chat-container">
-          <UserChat />
-        </div>
-      )}
         </nav>
-
-        <p></p>
+        {isChatOpen && (
+          <div className="chat-container">
+            {/* Render the chat component */}
+          </div>
+        )}
       </header>
 
       <section className="hero">
@@ -82,22 +116,38 @@ const HomePage = () => {
           <img src={images[imageIndex]} alt="Hero" className="hero-image" />
         </div>
         <div className="hero-buttons">
-          <button onClick={() => handleButtonClick('buy')}>Buy</button>
-          <button onClick={() => handleButtonClick('sell')}>Sell</button>
-          <button onClick={() => handleButtonClick('rent')}>Rent</button>
+          <button onClick={() => handleButtonClick('buy')}>
+            <FontAwesomeIcon icon={faMoneyBill} />
+            Buy Property
+          </button>
+          <button onClick={() => handleButtonClick('sell')}>
+            <FontAwesomeIcon icon={faChartLine} />
+            Sell Property
+          </button>
+          <button onClick={() => handleButtonClick('rent')}>
+            <FontAwesomeIcon icon={faHeadset} />
+            Rent Property
+          </button>
         </div>
         {searchType && (
           <div className="search-form">
-            <input type="text" placeholder="Enter location" />
-            <select>
-              <option value="">Property Type</option>
-              <option value="house">House</option>
-              <option value="apartment">Apartment</option>
-              <option value="condo">Condo</option>
-            </select>
-            <input type="number" placeholder="Max Price" />
-            <button>Search</button>
-            <button onClick={handleExitClick}>Exit</button>
+            <h3>Search for {searchType === 'buy' ? 'Buying' : searchType === 'sell' ? 'Selling' : 'Renting'} Property</h3>
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+              <input
+                type="number"
+                placeholder="Budget"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+              />
+              <button type="submit">Search</button>
+              <button onClick={handleExitClick}>Exit</button>
+            </form>
           </div>
         )}
       </section>
@@ -148,7 +198,7 @@ const HomePage = () => {
             <p className="review-date">13-04-23</p>
           </div>
           <div className="review">
-            <h3>Monitoring Estates,houses and tenants at ease</h3>
+            <h3>Monitoring Estates, houses, and tenants at ease</h3>
             <p>My Real Estate has helped me make countless sales and place wonderful tenants and families in affordable homes</p>
             <p className="review-author">Murigi Fred</p>
             <p className="review-date">01-01-23</p>
@@ -166,8 +216,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
-
-
 

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import AdminDashboard from './components/AdminDashboard';
@@ -20,15 +20,10 @@ import Header from './components/Header';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import FAQ from './components/Faq';
+import 'chart.js/auto';
+
 
 function App() {
-  const myRef = useRef(null);
-
-  // Example usage of useRef
-  const handleClick = () => {
-    myRef.current.focus();
-  };
-
   return (
     <Router>
       <Header />
@@ -51,8 +46,7 @@ function App() {
         <Route path="/user/chat" element={<UserChat />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/faq" element={<FAQ/>} />
-      
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
 
       <Footer />
