@@ -51,8 +51,8 @@ const tenantRoutes = require('./routes/tenants');
 const rentRoutes = require('./routes/rents');
 const chatRoutes = require('./routes/chat');
 const estateRoutes = require('./routes/estates');
-//const houseRoutes = require('./routes/houses');
-
+const houseRoutes = require('./routes/houses');
+const rentpaymentRoutes = require('./routes/rentpayment');
 
 
 app.use('/admin', adminRoutes);
@@ -60,7 +60,8 @@ app.use('/tenants', tenantRoutes);
 app.use('/rents', rentRoutes);
 app.use('/chat', chatRoutes);
 app.use('/estates', estateRoutes);
-//app.use('/houses', houseRoutes);
+app.use('/houses', houseRoutes);
+app.use('/rentpayment', rentpaymentRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
