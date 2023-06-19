@@ -1,45 +1,61 @@
 const Tenant = require('../models/Tenant');
 
-exports.lease = (req, res) => {
+exports.getAllTenants = (req, res) => {
   Tenant.find()
-    .then(tenants => {
-      res.render('userLease', { tenants });
-    })
+    .then(tenants => res.json(tenants))
     .catch(err => res.status(500).json({ error: err.message }));
-  
 };
 
-exports.payRent = (req, res) => {
+exports.createTenant = (req, res) => {
+  const { name, age, email } = req.body;
+
+  const newTenant = new Tenant({
+    name,
+    age,
+    email,
+  });
+
+  newTenant.save()
+    .then(tenant => res.status(201).json(tenant))
+    .catch(err => res.status(500).json({ error: err.message }));
+};
+
+exports.getTenantById = (req, res) => {
   const tenantId = req.params.tenantId;
-  const rentAmount = req.body.amount;
 
   Tenant.findById(tenantId)
     .then(tenant => {
       if (!tenant) {
-        return res.status(404).json({ error: 'Tenant not found'});
+        return res.status(404).json({ error: 'Tenant not found' });
       }
-      res.render('userPayRent', { tenant, rentAmount});
+      res.json(tenant);
     })
     .catch(err => res.status(500).json({ error: err.message }));
 };
 
-exports.rentPayments = (req, res) => {
+exports.updateTenantById = (req, res) => {
   const tenantId = req.params.tenantId;
+  const updates = req.body;
 
-  Tenant.findById(tenantId)
+  Tenant.findByIdAndUpdate(tenantId, updates, { new: true })
     .then(tenant => {
-        if(!tenant) {
-          return res.status(404).json({ error: 'Tenant not found' });
-        }
-        res.render('userRentPayments', { tenant, rentPayments});
+      if (!tenant) {
+        return res.status(404).json({ error: 'Tenant not found' });
+      }
+      res.json(tenant);
     })
-    .catch(err => res.status(500).json({ error: error.message}));
+    .catch(err => res.status(500).json({ error: err.message }));
 };
 
-exports.vacanthouses = (req, res) => {
-  Tenant.find({ status: 'vacant' })
-    .then(vacantHouses => {
-      res.render('userVacantHouses', { vacantHouses });
+exports.deleteTenantById = (req, res) => {
+  const tenantId = req.params.tenantId;
+
+  Tenant.findByIdAndDelete(tenantId)
+    .then(tenant => {
+      if (!tenant) {
+        return res.status(404).json({ error: 'Tenant not found' });
+      }
+      res.json({ message: 'Tenant deleted successfully' });
     })
     .catch(err => res.status(500).json({ error: err.message }));
 };

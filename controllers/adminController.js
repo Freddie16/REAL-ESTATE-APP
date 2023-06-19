@@ -1,27 +1,54 @@
 const Admin = require('../models/Admin');
+const Estate = require('../models/Estate');
+const House = require('../models/House');
+const RentPayment = require('../models/RentPayment');
+const Tenant = require('../models/Tenant');
 
-//placeholder function for the admin dashboard
-exports.dashboard = (req, res) => {
-    
-    res.render('adminDashboard');
-}
 exports.estates = (req, res) => {
-    
-    res.render('adminDashboard');
-}
-exports.houses = (req, res) => {
-    
-    res.render('adminDashboard');
-}
-exports.notifications = (req, res) => {
-    
-    res.render('adminDashboard');
-}
-exports.rentPayments = (req, res) => {
+  Estate.find()
+    .then(estates => {
+      res.json(estates);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+};
 
-    res.render('adminDashboard');
-}
+exports.houses = (req, res) => {
+  House.find()
+    .then(houses => {
+      res.json(houses);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
+exports.notifications = (req, res) => {
+  // Logic to retrieve and handle notifications
+  // Example implementation:
+  // Replace with actual implementation
+  const notifications = [];
+
+  res.json(notifications);
+};
+
+exports.rentPayments = (req, res) => {
+  RentPayment.find()
+    .then(rentPayments => {
+      res.json(rentPayments);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
 exports.tenants = (req, res) => {
-    
-    res.render('adminDashboard');
-}
+  Tenant.find()
+    .then(tenants => {
+      res.json(tenants);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+};

@@ -1,5 +1,5 @@
 const Estate = require('../models/Estate');
-const House = require('../models/Houses');
+const House = require('../models/House');
 
 exports.getAllEstates = (req, res) => {
   Estate.find()
