@@ -14,6 +14,12 @@ exports.estates = (req, res) => {
     });
 };
 
+exports.estateCount = (req, res) => {
+  Estate.distinct('name')
+    .then(estates => res.json({ estates: estates.length }))
+    .catch(err => res.status(500).json({ error: err.message }));
+};
+
 exports.houses = (req, res) => {
   House.find()
     .then(houses => {
