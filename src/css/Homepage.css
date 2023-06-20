@@ -1,5 +1,3 @@
-/* Homepage.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 .homepage {
@@ -20,8 +18,13 @@
 }
 
 .hero {
-  background-color: #f2f2f2;
-  padding: 40px 0;
+  background-color: white;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 77vh;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -30,10 +33,10 @@
 
 .hero-image {
   width: 100%;
-  max-width: 1000px;
-  height: auto;
-  margin: 20px 0;
+  height: 100%;
+  object-fit: cover;
 }
+
 
 .hero-buttons button {
   margin: 10px;
@@ -148,54 +151,5 @@
 .review .author {
   font-size: 14px;
   font-weight: 600;
-  color: #999;
-  margin-bottom: 5px;
+
 }
-
-.review .date {
-  font-size: 12px;
-  color: #999;
-}
-
-nav {
-  background-color: white;
-  color: black;
-  padding: 20px;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-li:last-child {
-  margin-right: 0;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-  padding: 5px 10px;
-  transition: text-decoration 0.3s ease;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.active {
-  font-weight: bold;
-}
-
-
-
-
-  

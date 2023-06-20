@@ -25,7 +25,7 @@ const UserChat = () => {
 
     try {
       const response = await axios.post('/api/chat-messages', {
-        message: newMessage,
+        text: newMessage,
       });
       setMessages([...messages, response.data]);
       setNewMessage('');
@@ -93,5 +93,6 @@ const UserChat = () => {
 };
 
 export default UserChat;
+
 
 
