@@ -12,7 +12,17 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      {/* Rest of your footer content */}
+      <div className="footer__section">
+        {/* Section 1 content goes here */}
+      </div>
+      <div className="footer__line"></div>
+      <div className="footer__section">
+        {/* Section 2 content goes here */}
+      </div>
+      <div className="footer__line"></div>
+      <div className="footer__section">
+        {/* Section 3 content goes here */}
+      </div>
     </footer>
   );
 };
