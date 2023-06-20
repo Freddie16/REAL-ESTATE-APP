@@ -8,7 +8,7 @@ exports.getAllHouses = (req, res) => {
 };
 
 exports.createHouse = (req, res) => {
-    const { name, houseNumber, bedrooms, status, estateId } = req.body;
+    const { name, houseNumber, bedrooms, status, estateId, amount } = req.body;
   
     Estate.findById(estateId)
       .then(estate => {
@@ -22,6 +22,7 @@ exports.createHouse = (req, res) => {
           bedrooms,
           status,
           estate: estateId,
+          amount,
         });
   
         newHouse.save()

@@ -23,6 +23,11 @@ const houseSchema = new mongoose.Schema({
     ref: 'Estate',
     required: true,
   },
+  amount: {
+     type: Number, 
+     required: true 
+  },
+
 });
 
 const House = mongoose.model('House', houseSchema);
