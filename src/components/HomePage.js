@@ -3,6 +3,7 @@ import '../css/Homepage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyBill, faChartLine, faHeadset, faCheck, faCog, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import Image from '../images/Untitled.jpg'
 
 const HomePage = () => {
   const [searchType, setSearchType] = useState(null);
@@ -11,9 +12,7 @@ const HomePage = () => {
   const [location, setLocation] = useState('');
   const [budget, setBudget] = useState('');
 
-  const images = [
-    'https://www.investopedia.com/thmb/DB67n15J_x4wUNqCWachp6ylHa0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/_PropertyManagement_anyaberkut-81d439d832e745229cad8de3835a5869.jpg',
-  ];
+  const images = [Image]
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -100,17 +99,28 @@ const HomePage = () => {
           </ul>
         </nav>
         {isChatOpen && (
-          <div className="chat-container">
-            {/* Render the chat component */}
+          <div className="chat-widget">
+          <div className="chat-header">
+            <h3>Customer Support</h3>
+            <button onClick={() => setIsChatOpen(false)}>Close</button>
           </div>
+          <div className="chat-body">
+            <div className="message">
+              <p>Hello! How can I assist you today?</p>
+            </div>
+            {/* Additional chat message components */}
+          </div>
+          <div className="chat-footer">
+            <input type="text" placeholder="Type your message" />
+            <button>Send</button>
+          </div>
+        </div>
         )}
       </header>
 
       <section className="hero">
         <div className="hero-content">
-          <h2>Welcome to Your Real Estate Management App</h2>
-          <p>Manage your estates, houses, tenants, and rent payments with ease.</p>
-          <p>Get started by navigating through the available features in the navigation menu.</p>
+          
           <img src={images[imageIndex]} alt="Hero" className="hero-image" />
         </div>
         <div className="hero-buttons">
@@ -209,6 +219,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} My Real Estate App. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
