@@ -9,6 +9,7 @@ const AdminHouses = () => {
     estateId: '',
     houseNumber: '',
     rentAmount: '',
+    houseName: '',
   });
   const [estates, setEstates] = useState([]);
 
@@ -43,6 +44,7 @@ const AdminHouses = () => {
         estateId: '',
         houseNumber: '',
         rentAmount: '',
+        houseName: '',
       });
     } catch (error) {
       console.error('Error creating house:', error);
@@ -74,6 +76,13 @@ const AdminHouses = () => {
         </div>
         <input
           type="text"
+          placeholder="House Name"
+          name="houseName"
+          value={newHouseData.houseName}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
           placeholder="House Number"
           name="houseNumber"
           value={newHouseData.houseNumber}
@@ -93,7 +102,7 @@ const AdminHouses = () => {
         <ul>
           {houses.map((house) => (
             <li key={house.id}>
-              Estate: {house.estateName}, House Number: {house.houseNumber}, Rent: {house.rentAmount}
+              Estate: {house.estateName}, House Name: {house.houseName}, House Number: {house.houseNumber}, Rent: {house.rentAmount}
             </li>
           ))}
         </ul>

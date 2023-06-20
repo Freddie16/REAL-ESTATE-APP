@@ -12,9 +12,7 @@ const HomePage = () => {
   const [budget, setBudget] = useState('');
 
   const images = [
-    'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?cs=srgb&dl=pexels-binyamin-mellish-106399.jpg&fm=jpg',
-    'https://images.pexels.com/photos/4469133/pexels-photo-4469133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/5524164/pexels-photo-5524164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://www.investopedia.com/thmb/DB67n15J_x4wUNqCWachp6ylHa0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/_PropertyManagement_anyaberkut-81d439d832e745229cad8de3835a5869.jpg',
   ];
 
   useEffect(() => {
@@ -96,7 +94,7 @@ const HomePage = () => {
                     <path d="M12 2C6.48 2 2 6.48 2 12c0 2.81 1.08 5.37 2.83 7.29l-.01.01L6.7 19l1.41-1.41C9.63 17.32 10.74 18 12 18c5.52 0 10-4.48 10-10S17.52 2 12 2zm2 13h-1v-2h1v2zm3 0h-1v-2h1v2zm2-5H5V8h14v2zm0-4H5V4h14v2z" />
                   </svg>
                 </span>
-                <span>Chat</span>
+                <span>Contact Us</span>
               </button>
             </li>
           </ul>
@@ -216,4 +214,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
