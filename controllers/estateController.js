@@ -1,38 +1,131 @@
 const Estate = require('../models/Estate');
 const House = require('../models/House');
+const mongoose = require('mongoose');
 
 exports.getAllEstates = (req, res) => {
-  Estate.find()
-    .then(estates => res.json(estates))
+  Estate.aggregate([
+    {
+      $lookup: {
+        from: 'houses',
+        let: { estateId: '$_id' },
+        pipeline: [
+          {
+            $match: {
+              $expr: { $eq: ['$estate', '$$estateId'] },
+            },
+          },
+        ],
+        as: 'houses',
+      },
+    },
+    {
+      $project: {
+        name: 1,
+        location: 1,
+        totalUnits: { $size: '$houses' },
+        waterRate: 1,
+        electricityRate: 1,
+        paybill: 1,
+        vacancies: {
+          $size: {
+            $filter: {
+              input: '$houses',
+              cond: { $eq: ['$$this.status', 'vacant'] },
+            },
+          },
+        },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        totalEstates: { $sum: 1 },
+        totalVacancies: { $sum: '$vacancies' },
+        estates: { $push: '$$ROOT' },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        totalEstates: 1,
+        totalVacancies: 1,
+        estates: 1,
+      },
+    },
+  ])
+    .then(data => {
+      const { totalEstates, totalVacancies, estates } = data[0];
+
+      res.json({ totalEstates, totalVacancies, estates });
+    })
     .catch(err => res.status(500).json({ error: err.message }));
 };
 
 exports.createEstate = (req, res) => {
-    console.log(req.body)
-  const { name, location } = req.body;
+  const { name, location, waterRate, electricityRate, paybill } = req.body;
 
-  const newEstate = new Estate({
-    name,
-    location,
-  });
+  Estate.findOne({ name }) // Check if an estate with the same name already exists
+    .then(existingEstate => {
+      if (existingEstate) {
+        return res.status(400).json({ error: "Estate name already exists" });
+      }
 
-  newEstate.save()
-    .then(estate => res.status(201).json(estate))
-    .catch(err => {
-        console.log(err)
-        res.status(500).json({ error: err.message })
-    });
+      const newEstate = new Estate({
+        name,
+        location,
+        waterRate,
+        electricityRate,
+        paybill,
+      });
+
+      newEstate.save()
+        .then(estate => res.status(201).json(estate))
+        .catch(err => res.status(500).json({ error: err.message }));
+    })
+    .catch(err => res.status(500).json({ error: err.message }));
 };
+
 
 exports.getEstateById = (req, res) => {
   const estateId = req.params.estateId;
 
-  Estate.findById(estateId)
+  Estate.aggregate([
+    {
+      $match: { _id: new mongoose.Types.ObjectId(estateId) },
+    },
+    {
+      $lookup: {
+        from: 'houses',
+        localField: 'houses',
+        foreignField: '_id',
+        as: 'houses',
+      },
+    },
+    {
+      $project: {
+        name: 1,
+        location: 1,
+        totalHouses: { $size: '$houses' },
+        totalVacancies: {
+          $size: {
+            $filter: {
+              input: '$houses',
+              cond: { $eq: ['$$this.status', 'vacant'] },
+            },
+          },
+        },
+        waterRate: 1,
+        electricityRate: 1,
+        paybill: 1,
+        houses: 1,
+      },
+    },
+  ])
     .then(estate => {
-      if (!estate) {
+      if (estate.length === 0) {
         return res.status(404).json({ error: 'Estate not found' });
       }
-      res.json(estate);
+      res.json(estate[0]);
     })
     .catch(err => res.status(500).json({ error: err.message }));
 };
@@ -63,12 +156,3 @@ exports.deleteEstateById = (req, res) => {
     })
     .catch(err => res.status(500).json({ error: err.message }));
 };
-
-
-exports.getHousesInEstateById = (req, res) => {
-    const estateId = req.params.estateId;
-    
-    House.find({ estate: estateId })
-    .then(houses => res.json(houses))
-    .catch(err => res.status(500).json({ error: err.message }));
-    };
