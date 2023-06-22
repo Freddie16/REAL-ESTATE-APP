@@ -18,17 +18,21 @@ const houseSchema = new mongoose.Schema({
     enum: ['vacant', 'occupied'],
     default: 'vacant',
   },
+  
   estate: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Estate',
     required: true,
   },
-  amount: {
+  rent: {
      type: Number, 
      required: true 
   },
 
 });
+
+
+
 
 const House = mongoose.model('House', houseSchema);
 
