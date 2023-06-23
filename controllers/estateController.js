@@ -146,13 +146,20 @@ exports.updateEstateById = (req, res) => {
 
 exports.deleteEstateById = (req, res) => {
   const estateId = req.params.estateId;
-
   Estate.findByIdAndDelete(estateId)
-    .then(estate => {
-      if (!estate) {
-        return res.status(404).json({ error: 'Estate not found' });
-      }
-      res.json({ message: 'Estate deleted successfully' });
-    })
-    .catch(err => res.status(500).json({ error: err.message }));
+  .then(estate => {
+    if (!estate) {
+      return res.status(404).json({ error: 'Estate not found' });
+    }
+    
+    // Delete all associated houses
+    House.deleteMany({ estate: estateId })
+      .then(() => {
+        res.json({ message: 'Estate and associated houses deleted successfully' });
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  })
+  .catch(err => res.status(500).json({ error: err.message }));
 };
